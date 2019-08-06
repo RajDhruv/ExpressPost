@@ -1,0 +1,8 @@
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" id="open_form_modal" style="display: none;">
+  Add Post
+</button>
+<%=link_to "Add Post",new_post_path, class: "btn btn-primary" ,style: "float:right; margin-right: 2%; margin-top: 1%;", remote: true%>
+
+<div id="home_page_content">
+<%=render partial:"posts/post_listing.html.erb", locals:{page_heading:"All Posts"}%>
+</div>

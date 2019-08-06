@@ -1,0 +1,25 @@
+<%case from%>
+<%when :home%>
+$("#home_page_content").html("<%=j render partial: 'posts/post_listing',locals:{page_heading:'All Posts'}%>")
+<%when :new%>
+	$('#modal_heading').html("Create Post");
+	$("#modal_body").html("<%=j render 'posts/new',post:@post%>");
+	$("#open_form_modal").click();
+<%when :create%>
+	$('#modal_heading').html("");
+	$("#modal_body").html("");
+	$("#close_modal").click();
+	$('#user_iteration').prepend("<%=j render 'posts/post_block',post:@post%>")
+<%when :edit%>
+	$('#modal_heading').html("Edit Post");
+	$("#modal_body").html("<%=j render 'posts/edit',post:@post%>");
+	$("#open_form_modal").click();
+<%when :update%>
+	$('#modal_heading').html("");
+	$("#modal_body").html("");
+	$("#close_modal").click();
+	$('#post_title_<%=@post.id%>').html("<%=@post.title%>")
+	$('#post_description_<%=@post.id%>').html("<%=@post.description%>")
+<%when :my_posts%>
+$("#home_page_content").html("<%=j render partial: 'posts/post_listing',locals:{page_heading:'My Posts'}%>")
+<%end%>

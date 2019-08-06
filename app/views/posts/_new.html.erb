@@ -1,0 +1,33 @@
+<%= form_for @post,:url=>posts_path, html: { multipart: true ,method: 'post',:id=>"new_post"}, remote: true, authenticity_token: true do |f| %>
+<div class="form-group">
+	<%=f.label :title%>
+	<%=f.text_field :title,class:"form-control"%>
+	</div>
+    <div class="form-group">
+   <%=f.label :description%>
+   <%= f.text_area :description,class:"form-control"%>
+   </div>
+      	<!-- Modal footer -->
+        <div class="modal-footer" id="modal-footer">
+          <%= f.submit "Create" ,id:"new_post_create", class:"btn btn-primary", onclick: "return validate_post();"%>
+          <button type="button" class="btn btn-danger" data-dismiss="modal" id="modal_close_button">Cancel</button>
+        </div>
+<%end%>
+<script type="text/javascript">
+  function validate_post()
+  {
+    post_title=$('#post_title').val();
+    post_description=$('#post_description').val();
+    if(post_title=="")
+    {
+      alert("Kindly Provide a Title to your Post");
+      return false;
+    }
+    if(post_description=="")
+    {
+      alert("Kindly Write Something as Post");
+      return false;
+    }
+    return true
+  }
+</script>

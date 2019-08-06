@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ExpressPost</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal_heading">Modal Heading</h4>
+          <button type="button" class="close" data-dismiss="modal" id="close_modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body" id="modal_body">
+          Modal body..
+        </div>
+
+      </div>
+    </div>
+  </div>
+  
+
+
+  <%=render 'shared/navbar'%>
+
+  <main role="main">
+
+    <div id="user_detail">
+      <!-- Will be handled by AJAX -->
+    </div>
+
+    <div class="album py-5 bg-light">
+      <div class="container" id="main_timeline">
+        <%=yield%>
+      </div>
+    </div>
+
+  </main>
+
+</body>
+</html>
