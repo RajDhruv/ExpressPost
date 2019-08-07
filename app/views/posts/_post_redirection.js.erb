@@ -1,6 +1,7 @@
 <%case from%>
 <%when :home%>
-$("#home_page_content").html("<%=j render partial: 'posts/post_listing',locals:{page_heading:'All Posts'}%>")
+$("#home_page_content").html("<%=j render partial: 'posts/post_listing',locals:{page_heading:'All Posts'}%>");
+$('#paginate_content').html("<%=j render partial: 'shared/paginate',locals:{page: page, from: 'Home'}%>");
 <%when :new%>
 	$('#modal_heading').html("Create Post");
 	$("#modal_body").html("<%=j render 'posts/new',post:@post%>");
@@ -21,5 +22,8 @@ $("#home_page_content").html("<%=j render partial: 'posts/post_listing',locals:{
 	$('#post_title_<%=@post.id%>').html("<%=@post.title%>")
 	$('#post_description_<%=@post.id%>').html("<%=@post.description%>")
 <%when :my_posts%>
-$("#home_page_content").html("<%=j render partial: 'posts/post_listing',locals:{page_heading:'My Posts'}%>")
+$("#home_page_content").html("<%=j render partial: 'posts/post_listing',locals:{page_heading:'My Posts'}%>");
+$('#paginate_content').html("<%=j render partial: 'shared/paginate',locals:{page: page, from: 'My_Posts'}%>");
+<%when :delete%>
+$("#post_block_<%=@post.id%>").hide();
 <%end%>

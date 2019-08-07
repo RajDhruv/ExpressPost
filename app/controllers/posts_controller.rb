@@ -2,19 +2,19 @@ class PostsController < ApplicationController
 	def home
 		@owner=false
 		params[:page]||=1
-		@all_post=Post.get_all_posts(params[:page])
+		@all_post,@count=Post.get_all_posts(params[:page])
 		respond_to do |format|
-			format.js{render partial:"post_redirection.js.erb", locals:{from: :home}}
-			format.html{render template:"posts/home.html.erb"}
+			format.js{render partial:"post_redirection.js.erb", locals:{from: :home, page: params[:page]}}
+			format.html{render template:"posts/home.html.erb", locals:{page: params[:page], from: "Home"}}
 		end
 	end
 	def my_posts
 		@owner=true
 		params[:page]||=1
-		@all_post=Post.get_users_all_posts(params[:page],current_user)
+		@all_post,@count=Post.get_users_all_posts(params[:page],current_user)
 		respond_to do |format|
-			format.js{render partial:"post_redirection.js.erb", locals:{from: :my_posts}}
-			format.html{render template:"posts/home.html.erb"}
+			format.js{render partial:"post_redirection.js.erb", locals:{from: :my_posts, page: params[:page]}}
+			format.html{render template:"posts/home.html.erb", locals:{page: params[:page], from: "Home"}}
 		end
 	end
 	def new
@@ -38,7 +38,9 @@ class PostsController < ApplicationController
 	end
 	def delete
 		@post=Post.find_by_id params[:id]
+		ActiveRecord::Base.lock_optimistically=false
 		@post.update_attribute("lock_version",-1)
+		ActiveRecord::Base.lock_optimistically=true
 		render partial:"post_redirection.js.erb", locals:{from: :delete}
 	end
 end

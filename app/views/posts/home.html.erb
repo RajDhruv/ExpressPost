@@ -6,3 +6,4 @@
 <div id="home_page_content">
 <%=render partial:"posts/post_listing.html.erb", locals:{page_heading:"All Posts"}%>
 </div>
+<div id="paginate_content"><%=render partial:"shared/paginate.html.erb", locals:{page: page, from: "Home"}%></div>

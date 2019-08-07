@@ -2,11 +2,16 @@ Rails.application.routes.draw do
   root 'posts#home'
   resources :posts do
   	member do
-  		get 'delete'
+  		post 'delete'
   	end
   	collection do
   		get 'home'
   		get 'my_posts'
+  	end
+  end
+  resources :votes do
+  	collection do
+  		post 'vote_post'
   	end
   end
   devise_for :users

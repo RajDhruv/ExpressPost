@@ -1,0 +1,19 @@
+<div style="float:right;">
+<%page=page.to_i
+@count=@count.to_i%>
+	<%if page>1%>
+		<%if from=="Home"%>
+			<%=link_to "<<Previous<<", home_posts_path(page: page-1),method: :get,remote: true%>
+		<%else%>
+			<%=link_to "<<Previous<<", my_posts_posts_path(user_id: current_user.id, page: page-1),method: :get,remote: true%>
+		<%end%>
+	<%end%>
+	<b>|Page: <%=page%>|</b>
+	<%if (page*10)<@count%>
+		<%if from=="Home"%>
+			<%=link_to ">>Next>>",home_posts_path(page: page+1),method: :get,remote: true%>
+		<%else%>
+			<%=link_to ">>Next>>",my_posts_posts_path(user_id: current_user.id,page: page+1),method: :get,remote: true%>
+		<%end%>
+	<%end%>
+</div>
