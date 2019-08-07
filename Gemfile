@@ -18,7 +18,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'devise', '~> 4.6', '>= 4.6.1'
 gem 'custom_loader', '~> 0.2.0'
 gem 'platipus', '~> 0.1.0'
-gem 'will_paginate', '~> 3.1.7'
+gem 'will_paginate'
 gem 'bootstrap', '~> 4.3', '>= 4.3.1'
 gem 'jquery-rails'
 # Use CoffeeScript for .coffee assets and views
